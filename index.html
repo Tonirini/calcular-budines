@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#6b3f2a" />
+  <title>GOSPA · Calculadora de batidas</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">GOSPA</p>
+        <h1>Calculadora de batidas</h1>
+        <p class="subtitle">Elegí el sabor, cargá cantidades y obtené la receta automáticamente.</p>
+      </div>
+      <button id="clearAll" class="ghost-btn" type="button">Limpiar todo</button>
+    </header>
+
+    <section class="panel builder" aria-labelledby="builder-title">
+      <div class="panel-head">
+        <div>
+          <h2 id="builder-title">Agregar producción</h2>
+          <p>Budín: 250 g · Matera: 600 g</p>
+        </div>
+      </div>
+
+      <form id="productionForm" class="form-grid">
+        <label class="field field-wide">
+          <span>Sabor</span>
+          <select id="flavor" required></select>
+        </label>
+
+        <label class="field">
+          <span>Budines</span>
+          <input id="budines" type="number" min="0" step="1" value="0" inputmode="numeric" />
+        </label>
+
+        <label class="field">
+          <span>Materas</span>
+          <input id="materas" type="number" min="0" step="1" value="0" inputmode="numeric" />
+        </label>
+
+        <label class="field">
+          <span>Planchas</span>
+          <input id="planchas" type="number" min="0" step="1" value="0" inputmode="numeric" />
+          <small>Plancha completa = 2 unidades de receta.</small>
+        </label>
+
+        <label class="field">
+          <span>Medias planchas</span>
+          <input id="medias" type="number" min="0" step="1" value="0" inputmode="numeric" />
+          <small>Media plancha = 1 unidad de receta.</small>
+        </label>
+
+        <label id="orangeAdjustWrap" class="switch-row field-wide hidden">
+          <input id="orangeAdjust" type="checkbox" />
+          <span>
+            <strong>Aplicar ajuste práctico de naranja</strong>
+            <small>+17,8% de premezcla en budines/materas. No modifica las planchas.</small>
+          </span>
+        </label>
+
+        <div class="field-wide action-row">
+          <button class="primary-btn" type="submit">Agregar a producción</button>
+          <p id="validation" class="validation" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+    </section>
+
+    <section class="panel" aria-labelledby="list-title">
+      <div class="panel-head">
+        <div>
+          <h2 id="list-title">Producción cargada</h2>
+          <p id="productionMeta">Todavía no agregaste productos.</p>
+        </div>
+      </div>
+      <div id="productionList" class="production-list"></div>
+    </section>
+
+    <section aria-labelledby="results-title" class="results-section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">RESULTADO</p>
+          <h2 id="results-title">Batidas a preparar</h2>
+        </div>
+      </div>
+      <div id="results" class="results-grid" aria-live="polite"></div>
+    </section>
+
+    <section class="panel notes">
+      <h2>Reglas cargadas</h2>
+      <ul>
+        <li><strong>Regla 1.200:</strong> 1.200 g premezcla + 175 g huevo + 425 g líquido + 200 g manteca + 3 cdas maicena + 3 cdas polvo.</li>
+        <li><strong>Regla real 1.000:</strong> 1.000 g premezcla + 175 g huevo + 425 g líquido + 200 g manteca + 2 cdas maicena + 2 cdas polvo.</li>
+        <li><strong>Plancha completa:</strong> usa 2 unidades de receta: 2.400 g de premezcla si es regla 1.200, o 2.000 g si es regla real.</li>
+        <li><strong>Media plancha:</strong> usa 1 unidad de receta: 1.200 g o 1.000 g respectivamente.</li>
+        <li><strong>Esencia:</strong> 1 chorro por cada kg de premezcla, excepto chocolate.</li>
+      </ul>
+    </section>
+  </main>
+  <script src="./app.js"></script>
+</body>
+</html>
